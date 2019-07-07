@@ -23,7 +23,7 @@ def on_snapshot(col_snapshot, changes, read_time):
     for change in changes:
         if change.type.name == 'ADDED':
             value = change.document.reference.get().to_dict()
-            print(value)
+
             if not value:
                 continue
 
@@ -58,7 +58,8 @@ def on_snapshot(col_snapshot, changes, read_time):
                     department_name = department['name']
                     tg_id = department['telegram_id']
 
-            message_text = name + ' (' + ('forbidden' if forbidden else 'accepted') + ')' + (' from ' + department_name if department_name else '') + ' is there.'
+            message_text = name + ' (' + ('forbidden' if forbidden else 'accepted') + ')' + (
+                ' from ' + department_name if department_name else '') + ' is there.'
             print(tg_id)
             bot.send_message(tg_id, message_text)
 

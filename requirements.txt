@@ -4,3 +4,4 @@ face_recognition
 firebase_admin
 flask
 werkzeug
+pytelegrambotapi

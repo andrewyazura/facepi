@@ -5,9 +5,7 @@ import time
 
 import cv2
 import face_recognition
-import firebase_admin
 import imutils
-from firebase_admin import credentials, firestore
 from imutils import paths
 from imutils.video import VideoStream
 
@@ -59,13 +57,6 @@ def live_recognition(images_folder, db):
     print('[INFO] starting video stream...')
     vs = VideoStream(usePiCamera=True).start()
     time.sleep(2.0)
-
-    print('[INFO] contacting database')
-    # cred = credentials.ApplicationDefault()
-    # firebase_admin.initialize_app(cred, {
-    #     'projectId': 'facepi1'
-    # })
-    # db = firestore.client()
 
     now = datetime.datetime.now()
     today = now.strftime('%d.%m.%Y')

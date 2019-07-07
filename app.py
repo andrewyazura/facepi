@@ -1,7 +1,8 @@
-import firebase_admin
 import multiprocessing
 import os
 import shutil
+
+import firebase_admin
 from firebase_admin import credentials, firestore
 from flask import flash, Flask, redirect, render_template, request
 from imutils import paths
@@ -282,4 +283,3 @@ def tutorials():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)
-
