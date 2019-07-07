@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class='container'>
+        <div class='section row'>
+            <div class='col s12 m6 offset-m3'>
+                {% if not folders|length %}
+                    <h5 class='center-align'>No forbidden faces yet</h5>
+                {% endif %}
+                {% for folder, files_amount in folders %}
+                    <div class='card-panel grey lighten-5 z-depth-1'>
+                        <div class='row valign-wrapper'>
+                            <div class='col s8'>
+                                <a href='/forbidden_photos/{{ folder }}'><h5>{{ folder }}</h5></a>
+                                <span>{{ files_amount }} photo(s)</span>
+                            </div>
+                            <div class='col s4'>
+                                <a href='/delete_folder/forbidden/{{ folder }}'
+                                   class='btn-floating btn waves-effect waves-light right red'>
+                                    <i class='material-icons'>delete</i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

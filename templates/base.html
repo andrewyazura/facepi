@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Face Pi Web Interface</title>
+
+    <link type='text/css' rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+    <link type='text/css' rel='stylesheet' href='{{ url_for('static', filename='styles/materialize.min.css') }}'
+          media='screen,projection'>
+    <link type='text/css' rel='stylesheet' href='{{ url_for('static', filename='styles/style.css') }}'>
+
+    <script type='text/javascript' src='{{ url_for('static', filename='scripts/materialize.min.js') }}' defer></script>
+    <script type='text/javascript' src='{{ url_for('static', filename='scripts/script.js') }}' defer></script>
+</head>
+<body>
+{% include 'flash_messages.html' %}
+{% include 'header.html' %}
+{% block content %}{% endblock %}
+</body>
+</html>

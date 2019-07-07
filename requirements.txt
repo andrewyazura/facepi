@@ -1,0 +1,6 @@
+cv2
+imutils
+face_recognition
+firebase_admin
+flask
+werkzeug

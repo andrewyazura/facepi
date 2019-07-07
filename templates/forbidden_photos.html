@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class='container'>
+        <div class='section row'>
+            <h4 class='center-align'>{{ folder_name }}'s photos:</h4>
+            <div class='col s12 m6 offset-m3'>
+                {% if not photos|length %}
+                    <h5 class='center-align'>No forbidden photos yet</h5>
+                {% endif %}
+                {% for photo_path in photos %}
+                    <div class='card-panel grey lighten-5 z-depth-1'>
+                        <div class='row valign-wrapper'>
+                            <div class='col s4'>
+                                <img src='/{{ photo_path }}' alt='Person face' class='responsive-img'>
+                            </div>
+                            <div class='col s8'>
+                                <a href='/delete_face/forbidden/{{ folder_name }}/{{ photo_path.rsplit('/')[-1] }}'
+                                   class='btn-floating btn waves-effect waves-light right red'>
+                                    <i class='material-icons'>delete</i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,23 @@
+.menu-list {
+    font-size: 1.2em !important;
+}
+
+.mobile-menu-list {
+    font-size: 1.2em !important;
+}
+
+.alert {
+    padding: 10px;
+}
+
+.alert-success {
+    background-color: #c8e6c9;
+}
+
+.alert-error {
+    background-color: #ffcdd2;
+}
+
+.info-icons {
+    font-size: 1.1em !important;
+}

@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class='container'>
+        <div class='section'>
+            <div class='row'>
+                <form class='col s12 m6 offset-m3' action='/add_face' method='post' enctype='multipart/form-data'>
+                    <h4>Add face:</h4>
+                    <br>
+                    <div class='input-field'>
+                        <input id='first_name' type='text' class='validate' name='name' minlength='3' required>
+                        <label for='first_name'>Name</label>
+                    </div>
+                    <br>
+                    <div class='input-field'>
+                        <select name='department'>
+                            <option value='' disabled selected>Choose the department</option>
+                            {% if not departments|length %}
+                                <option value='' disabled>Looks like there are no departments</option>
+                            {% endif %}
+                            {% for department in departments %}
+                                <option value='{{ department }}'>{{ department }}</option>
+                            {% endfor %}
+                        </select>
+                        <label>Department</label>
+                    </div>
+                    <br>
+                    <div class='file-field input-field'>
+                        <div class='btn blue lighten-1'>
+                            <span><i class='material-icons left'>folder</i>File</span>
+                            <input type='file' name='face_image' required>
+                        </div>
+                        <div class='file-path-wrapper'>
+                            <input class='file-path validate' type='text'>
+                        </div>
+                    </div>
+                    <br>
+                    <p>
+                        <label>
+                            <input type='checkbox' name='is_forbidden'/>
+                            <span class='black-text'>Is forbidden</span>
+                        </label>
+                    </p>
+                    <br>
+                    <button class='btn waves-effect waves-light green accent-4' type='submit' name='action'>Send
+                        <i class='material-icons left'>send</i>
+                    </button>
+                    <button class='btn waves-effect waves-light right red' type='reset' name='action'>Reset
+                        <i class='material-icons left'>clear</i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class='section row'>
+            <div class='col s12 m6 offset-m3'>
+                <div class='card-panel grey lighten-5 z-depth-1'>
+                    <div class='row valign-wrapper'>
+                        <div class='col s12'>
+                            <a href='/forbidden_faces'><h5>Forbidden</h5></a>
+                            <span>{{ forbidden_faces }} faces(s)</span>
+                        </div>
+                    </div>
+                </div>
+                {% for folder, files_amount in folders %}
+                    <div class='card-panel grey lighten-5 z-depth-1'>
+                        <div class='row valign-wrapper'>
+                            <div class='col s8'>
+                                <a href='/photos/{{ folder }}'><h5>{{ folder }}</h5></a>
+                                <span>{{ files_amount }} photo(s)</span>
+                            </div>
+                            <div class='col s4'>
+                                <a href='/delete_folder/{{ folder }}'
+                                   class='btn-floating btn waves-effect waves-light right red'>
+                                    <i class='material-icons'>delete</i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

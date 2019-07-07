@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class='section no-pad-bot' id='index-banner'>
+        <div class='container'>
+            <br><br>
+            <h1 class='header center indigo-text darken-4'>Face Pi</h1>
+            <div class='row center'>
+                <h5 class='header col s12 light'>Secure system for monitoring people.</h5>
+            </div>
+            <div class='row center'>
+                {% if working %}
+                    <a href='/?stop' id='download-button'
+                       class='btn-large waves-effect waves-light blue darken-1'>
+                        <i class='material-icons left'>pause_circle_outline</i>
+                            Stop
+                    </a>
+                {% else %}
+                    <a href='/?start' id='download-button'
+                       class='btn-large waves-effect waves-light blue darken-1'>
+                       <i class='material-icons left'>play_circle_outline</i>
+                           Start
+                    </a>
+                {% endif %}
+                <a href='/?shutdown' id='download-button'
+                   class='btn-large waves-effect waves-light red darken-1'>
+                    <i class='material-icons left'>power_settings_new</i>
+                    Shutdown
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class='container'>
+        <div class='section'>
+            <div class='row'>
+                <div class='col s12 m4'>
+                    <div class='icon-block'>
+                        <h2 class='center light-blue-text'>
+                            <i class='material-icons info-icons'>sentiment_very_satisfied</i>
+                        </h2>
+                        <h5 class='center'>User-friendly</h5>
+
+                        <p class='light'>Web interface of Face Pi is user-friendly. You can start using it without
+                            reading long boring manuals. Web page is fully responsive which makes it easy-to-use even on
+                            mobile devices.</p>
+                    </div>
+                </div>
+                <div class='col s12 m4'>
+                    <div class='icon-block'>
+                        <h2 class='center light-blue-text'>
+                            <i class='material-icons info-icons'>security</i>
+                        </h2>
+                        <h5 class='center'>Secure</h5>
+
+                        <p class='light'>It's a non-stop running system that saves to database every person it sees.</p>
+                    </div>
+                </div>
+                <div class='col s12 m4'>
+                    <div class='icon-block'>
+                        <h2 class='center light-blue-text'>
+                            <i class='material-icons info-icons'>settings</i>
+                        </h2>
+                        <h5 class='center'>Easy to setup</h5>
+
+                        <p class='light'>Setting up Face Pi is really simple. You just need to enter SSID and password
+                            of your WiFi network, add faces and you are ready to go! You can add new networks or faces
+                            any time.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br>
+    </div>
+{% endblock %}

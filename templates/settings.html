@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class='container'>
+        <div class='row'>
+            <form class='col s12 m6 offset-m3' action='/settings' method='POST'>
+                <h5>Login to get notifications about forbidden and unknown:</h5>
+                <br>
+                <script async src="https://telegram.org/js/telegram-widget.js?6"
+                        data-telegram-login="brobots_school_bot" data-size="large" data-radius="10"
+                        data-onauth="onTelegramAuth(user)" data-request-access="write"></script>
+                <script type="text/javascript">
+                    function onTelegramAuth(user) {
+                        document.getElementById('telegram-id').value = user.id;
+                        document.getElementById('department-form').submit();
+                    }
+                </script>
+                <br><br>
+                <input id='telegram-id' name='telegram_id' style='display: none;'>
+            </form>
+        </div>
+    </div>
+{% endblock %}

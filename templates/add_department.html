@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class='container'>
+    <div class='section'>
+        <div class='row'>
+            <form id='department-form' class='col s12 m6 offset-m3' action='/add_department' method='post'>
+                <h4>Add department:</h4>
+                <br>
+                <div class='input-field'>
+                    <input id='department' type='text' class='validate' name='department' minlength='3' required>
+                    <label for='department'>Department name</label>
+                </div>
+                <br>
+                <script async src='https://telegram.org/js/telegram-widget.js?6'
+                        data-telegram-login='brobots_school_bot' data-size='large' data-radius='10'
+                        data-onauth='onTelegramAuth(user)' data-request-access='write'></script>
+                <script type='text/javascript'>
+                    function onTelegramAuth(user) {
+                        document.getElementById('telegram-id').value = user.id;
+                        document.getElementById('department-form').submit();
+                    }
+                </script>
+                <br>
+                or
+                <br>
+                <div class='input-field'>
+                    <input id='telegram-id' type='url' pattern='https:\/\/web\.telegram\.org\/#\/im\?p=g\d+'
+                           class='validate' name='telegram_id' minlength='3' required>
+                    <label for='telegram-id'>Telegram group link</label>
+                </div>
+                <a href='/tutorials#telegram-group-link'>How to get Telegram group link</a>
+                <br>
+                <a href='/tutorials#after-entering-group-link'>Next steps after entering group link</a>
+                <br><br>
+                <button class='btn waves-effect waves-light green accent-4' type='submit' name='action'>Send
+                    <i class='material-icons left'>send</i>
+                </button>
+                <button class='btn waves-effect waves-light right red' type='reset' name='action'>Reset
+                    <i class='material-icons left'>clear</i>
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class='section row'>
+        <div class='col s12 m6 offset-m3'>
+            {% for department in departments %}
+            <div class='card-panel grey lighten-5 z-depth-1'>
+                <div class='row valign-wrapper'>
+                    <div class='col s8'>
+                        <h5>{{ department }}</h5>
+                    </div>
+                    <div class='col s4'>
+                        <a href='/delete_department/{{ department }}'
+                           class='btn-floating btn waves-effect waves-light right red'>
+                            <i class='material-icons'>delete</i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
