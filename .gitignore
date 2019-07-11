@@ -379,3 +379,4 @@ installation/
 opencv/
 opencv_contrib/
 static/uploads/*
+encodings

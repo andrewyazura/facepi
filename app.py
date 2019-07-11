@@ -8,8 +8,8 @@ from flask import flash, Flask, redirect, render_template, request
 from imutils import paths
 from werkzeug.utils import secure_filename
 
-from telegram_bot import send_information
 from live_recognition import live_recognition
+from telegram_bot import send_information
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(24)
@@ -78,6 +78,22 @@ def homepage():
         return redirect('/')
 
     return render_template('index.html', working=is_working)
+
+
+@app.route('/collections')
+def show_collections():
+    collections = db.collection('collection_dates').get()
+    collections = [collection.to_dict()['name'] for collection in collections]
+    print(collections)
+    return render_template('collections.html', collections=collections)
+
+
+@app.route('/collection/<collection_name>')
+def show_collection(collection_name):
+    elements = db.collection(collection_name).orderBy("datetime", "desc").get()
+    elements = [element.to_dict() for element in elements]
+
+    return render_template('collection.html', elements=elements)
 
 
 @app.route('/add_department', methods=['GET', 'POST'])
