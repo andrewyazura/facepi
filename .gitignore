@@ -378,3 +378,4 @@ OpenCV-master-py3/
 installation/
 opencv/
 opencv_contrib/
+static/uploads/*

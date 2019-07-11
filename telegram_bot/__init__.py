@@ -60,7 +60,7 @@ def send_information(db):
 
                 message_text = name + ' (' + ('forbidden' if forbidden else 'accepted') + ')' + (
                     ' from ' + department_name if department_name else '') + ' is there.'
-                print(tg_id)
+
                 bot.send_message(tg_id, message_text)
 
     print('[INFO] waiting for updates')

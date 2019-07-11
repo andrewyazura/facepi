@@ -261,7 +261,6 @@ def settings():
         if not telegram_id:
             flash('Login with Telegram to continue', 'error')
             return redirect('/settings')
-        print(telegram_id)
 
         departments = db.collection(u'departments')
         departments.document(u'unknown').set({
