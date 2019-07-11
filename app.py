@@ -26,7 +26,7 @@ db = firestore.client()
 
 is_working = False
 live_rec = multiprocessing.Process(target=live_recognition, args=(UPLOAD_FOLDER, db))
-telegram_bot = multiprocessing.Process(target=send_information)
+telegram_bot = multiprocessing.Process(target=send_information, args=(db,))
 
 
 def allowed_file(filename):
@@ -261,6 +261,7 @@ def settings():
         if not telegram_id:
             flash('Login with Telegram to continue', 'error')
             return redirect('/settings')
+        print(telegram_id)
 
         departments = db.collection(u'departments')
         departments.document(u'unknown').set({
@@ -284,5 +285,5 @@ def tutorials():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
     telegram_bot.start()
+    app.run(host='0.0.0.0', port=80)

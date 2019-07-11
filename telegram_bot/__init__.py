@@ -5,17 +5,14 @@ import telebot
 from firebase_admin import credentials, firestore
 
 
-def send_information():
+def send_information(db):
+    print('[INFO] starting bot')
     token = '756987925:AAF579YZ_QwxXwAR4dfCM6QSiKGtoS4M-UI'
     bot = telebot.TeleBot(token=token)
 
-    cred = credentials.ApplicationDefault()
-    firebase_admin.initialize_app(cred, {
-        'projectId': 'facepi1',
-    })
+    print('[INFO] contacting DB')
 
-    db = firestore.client()
-
+    print('[INFO] getting collection')
     now = datetime.datetime.now()
     today = now.strftime('%d.%m.%Y')
     collection_ref = db.collection(today)
@@ -66,6 +63,7 @@ def send_information():
                 print(tg_id)
                 bot.send_message(tg_id, message_text)
 
+    print('[INFO] waiting for updates')
     query_watch = collection_ref.on_snapshot(on_snapshot)
 
     while True:
