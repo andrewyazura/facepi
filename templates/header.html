@@ -3,21 +3,24 @@
         <a href='/' class='brand-logo'>Face Pi</a>
         <a href='#' data-target='mobile-version' class='sidenav-trigger'><i class='material-icons'>menu</i></a>
         <ul class='right hide-on-med-and-down'>
+            <li><a class='menu-list' href={{ url_for('add_department') }}>Add department</a></li>
             <li><a class='menu-list' href={{ url_for('upload_face') }}>Add face</a></li>
             <li><a class='menu-list' href={{ url_for('show_forbidden') }}>Forbidden faces</a></li>
-            <li><a class='menu-list' href={{ url_for('add_department') }}>Add department</a></li>
+            <li><a class='menu-list' href={{ url_for('show_collections') }}>Collections</a></li>
             <li><a class='menu-list' href={{ url_for('settings') }}>Settings</a></li>
         </ul>
     </div>
 </nav>
 
 <ul class='sidenav' id='mobile-version'>
+    <li><a class='menu-list' href={{ url_for('add_department') }}><i class='material-icons left'>people</i>
+        Add department</a></li>
     <li><a class='mobile-menu-list' href={{ url_for('upload_face') }}><i class='material-icons left'>sentiment_very_satisfied</i>
         Add face</a></li>
     <li><a class='menu-list' href={{ url_for('show_forbidden') }}><i class='material-icons left'>mood_bad</i>
         Forbidden faces</a></li>
-    <li><a class='menu-list' href={{ url_for('add_department') }}><i class='material-icons left'>people</i>
-        Add department</a></li>
+    <li><a class='menu-list' href={{ url_for('show_collections') }}><i class='material-icons left'>assignment</i>
+        Collections</a></li>
     <li><a class='mobile-menu-list' href={{ url_for('settings') }}><i class='material-icons left'>settings</i>
         Settings</a></li>
 </ul>

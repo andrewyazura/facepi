@@ -95,7 +95,10 @@ def show_collection(collection_name):
     elements_new = []
     for element in elements:
         to_dict = element.to_dict()
-        elements_new.append({ 'name': to_dict['name'], 'datetime': to_dict['datetime'].strftime('%d.%m.%Y %H:%M:%S') })
+        elements_new.append({
+            'name':     to_dict['name'],
+            'datetime': to_dict['datetime'].strftime('%d.%m.%Y %H:%M:%S')
+        })
 
     return render_template('collection.html', elements=elements_new)
 
