@@ -8,6 +8,7 @@ from flask import flash, Flask, redirect, render_template, request
 from imutils import paths
 from werkzeug.utils import secure_filename
 
+from telegram_bot import send_information
 from live_recognition import live_recognition
 
 app = Flask(__name__)
@@ -25,6 +26,7 @@ db = firestore.client()
 
 is_working = False
 live_rec = multiprocessing.Process(target=live_recognition, args=(UPLOAD_FOLDER, db))
+telegram_bot = multiprocessing.Process(target=send_information)
 
 
 def allowed_file(filename):
@@ -283,3 +285,4 @@ def tutorials():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)
+    telegram_bot.start()
