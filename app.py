@@ -90,10 +90,14 @@ def show_collections():
 
 @app.route('/collection/<collection_name>')
 def show_collection(collection_name):
-    elements = db.collection(collection_name).orderBy("datetime", "desc").get()
-    elements = [element.to_dict() for element in elements]
+    elements = db.collection(collection_name).order_by('datetime', direction=firestore.Query.DESCENDING).get()
 
-    return render_template('collection.html', elements=elements)
+    elements_new = []
+    for element in elements:
+        to_dict = element.to_dict()
+        elements_new.append({ 'name': to_dict['name'], 'datetime': to_dict['datetime'].strftime('%d.%m.%Y %H:%M:%S') })
+
+    return render_template('collection.html', elements=elements_new)
 
 
 @app.route('/add_department', methods=['GET', 'POST'])
