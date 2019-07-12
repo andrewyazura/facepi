@@ -301,11 +301,31 @@ def settings():
     return render_template('settings.html')
 
 
+@app.route('/tg_notifications', methods=['GET', 'POST'])
+def notifications():
+    if request.method == 'POST':
+        checkbox = request.form.get('match-with-pairs')
+
+        if checkbox is None:
+            flash('Something went wrong')
+
+        else:
+            if checkbox:
+                os.remove('.notelegram')
+
+            else:
+                open('.notelegram', 'a').close()
+
+    return redirect('/settings')
+
+
 @app.route('/tutorials')
 def tutorials():
     return render_template('tutorials.html')
 
 
 if __name__ == '__main__':
-    telegram_bot.start()
+    if not os.path.exists('.notelegram'):
+        telegram_bot.start()
+
     app.run(host='0.0.0.0', port=80)

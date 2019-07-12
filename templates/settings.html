@@ -18,6 +18,23 @@
                 <br><br>
                 <input id='telegram-id' name='telegram_id' style='display: none;'>
             </form>
+            <form id='department-form' class='col s12 m6 offset-m3' action='/tg_notifications' method='POST'>
+                <div class='row'>
+                    <div class='col s10'><h5>Enable or disable Telegram notifications</h5></div>
+                    <div class='col s2'>
+                        <div class="switch">
+                            <label>
+                                Off
+                                <input type="checkbox" name='notifications'>
+                                <span class="lever"></span>
+                                On
+                            </label>
+                        </div>
+                    </div>
+                    <br>
+                    <span>You should restart after changing this setting</span>
+                </div>
+            </form>
         </div>
     </div>
 {% endblock %}
