@@ -298,23 +298,20 @@ def settings():
         flash('Successfully logged in', 'success')
         return redirect('/settings')
 
-    return render_template('settings.html')
+    no_tg = os.path.exists('.notelegram')
+    return render_template('settings.html', no_tg=no_tg)
 
 
 @app.route('/tg_notifications', methods=['GET', 'POST'])
 def notifications():
     if request.method == 'POST':
-        checkbox = request.form.get('match-with-pairs')
+        checkbox = request.form.get('notifications')
 
         if checkbox is None:
-            flash('Something went wrong')
+            open('.notelegram', 'a').close()
 
-        else:
-            if checkbox:
-                os.remove('.notelegram')
-
-            else:
-                open('.notelegram', 'a').close()
+        elif checkbox and os.path.exists('.notelegram'):
+            os.remove('.notelegram')
 
     return redirect('/settings')
 
