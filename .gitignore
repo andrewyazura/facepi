@@ -380,3 +380,4 @@ opencv/
 opencv_contrib/
 static/uploads/*
 encodings
+email_sender/

@@ -244,6 +244,7 @@ def delete_folder(folder_name):
     if first_doc:
         first_doc.reference.delete()
 
+    open('.reencode', 'a').close()
     flash('Successfully removed faces', 'success')
     return redirect('/add_face')
 
@@ -256,6 +257,7 @@ def delete_forbidden_folder(folder_name):
     if first_doc:
         first_doc.reference.delete()
 
+    open('.reencode', 'a').close()
     flash('Successfully removed faces', 'success')
     return redirect('/forbidden_faces')
 
